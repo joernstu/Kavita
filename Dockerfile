@@ -1,7 +1,7 @@
 #This Dockerfile creates a build for all architectures
 
 #Image that copies in the files and passes them to the main image
-FROM ubuntu:focal AS copytask
+FROM ubuntu:20.04 AS copytask
 
 ARG TARGETPLATFORM
 
@@ -13,7 +13,7 @@ COPY copy_runtime.sh /copy_runtime.sh
 RUN /copy_runtime.sh
 
 #Production image
-FROM ubuntu:focal
+FROM ubuntu:20.04
 
 COPY --from=copytask /Kavita /kavita
 COPY --from=copytask /files/wwwroot /kavita/wwwroot
